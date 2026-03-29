@@ -3,12 +3,11 @@ yfinance
 pandas
 numpy
 scipy
-statsmodels
 requests
 python-dotenv
-fastapi
-uvicorn
-wandb
 plotly
 pydantic
+pydantic-settings
+streamlit
 pytest
+ruff

@@ -3,7 +3,6 @@ Historical price fetcher using yfinance.
 Pulls daily OHLCV data and computes forward returns at 1, 5, and 21 day horizons.
 """
 
-import json
 from pathlib import Path
 
 import pandas as pd

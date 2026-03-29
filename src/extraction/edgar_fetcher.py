@@ -17,7 +17,6 @@ DATA_DIR = Path(__file__).parent.parent.parent / "data" / "raw"
 
 def get_cik(ticker: str) -> str | None:
     """Resolve ticker symbol to SEC CIK number."""
-    url = "https://efts.sec.gov/LATEST/search-index?q=%22{}%22&dateRange=custom&startdt=2020-01-01&enddt=2020-01-02&forms=10-K".format(ticker)
     # Use the company tickers JSON — most reliable
     resp = requests.get(
         "https://www.sec.gov/files/company_tickers.json",
@@ -92,7 +91,7 @@ def get_readable_doc(cik: str, accession: str, primary_doc: str) -> str:
                     "r1.", "r2.", "r3.", "r4.", "r5.", "r6.", "r7.", "r8.", "r9."]
         return not any(ex in name for ex in excludes)
 
-    candidates = [l.split("/")[-1] for l in links if is_main_doc(l)]
+    candidates = [link.split("/")[-1] for link in links if is_main_doc(link)]
     return candidates[0] if candidates else primary_doc
 
 

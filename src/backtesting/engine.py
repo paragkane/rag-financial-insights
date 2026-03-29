@@ -202,7 +202,7 @@ def run_full_backtest(tickers: list[str], horizon: str = "fwd_return_5d") -> dic
         try:
             from src.backtesting.factor_model import add_neutralized_columns
             df = add_neutralized_columns(df)
-            print(f"Factor neutralization applied.\n")
+            print("Factor neutralization applied.\n")
         except Exception as e:
             print(f"Factor neutralization skipped: {e}\n")
 

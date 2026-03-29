@@ -10,4 +10,5 @@ data/processed/
 *.csv
 .ipynb_checkpoints/
 charts/*.html
-charts/dashboard_screenshot.png linguist-vendored
+.pytest_cache/
+.ruff_cache/

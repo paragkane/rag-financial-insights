@@ -8,7 +8,6 @@ This gives us the core dataset for backtesting:
   signal date → next trading day → forward returns
 """
 
-import json
 from pathlib import Path
 
 import pandas as pd

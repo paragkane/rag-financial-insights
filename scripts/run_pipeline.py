@@ -11,8 +11,10 @@ import os
 import sys
 import time
 from pathlib import Path
+from dotenv import load_dotenv
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 from src.extraction.edgar_fetcher import fetch_tickers
 from src.extraction.price_fetcher import fetch_and_save

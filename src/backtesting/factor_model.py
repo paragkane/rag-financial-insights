@@ -29,13 +29,19 @@ import yfinance as yf
 DATA_DIR = Path(__file__).parent.parent.parent / "data" / "processed"
 
 SECTOR_MAP = {
-    "AAPL": "XLK", "MSFT": "XLK", "GOOGL": "XLK",
-    "AMZN": "XLK", "NVDA": "XLK", "META": "XLK",
-    "JPM":  "XLF", "GS":   "XLF", "BAC":  "XLF",
-    "MS":   "XLF", "WFC":  "XLF", "BLK":  "XLF",
-    "JNJ":  "XLV", "UNH":  "XLV", "PFE":  "XLV",
-    "WMT":  "XLP", "HD":   "XLP", "NKE":  "XLP",
-    "XOM":  "XLE", "CVX":  "XLE",
+    # Tech
+    "AAPL": "XLK", "MSFT": "XLK", "GOOGL": "XLK", "AMZN": "XLK",
+    "NVDA": "XLK", "META": "XLK", "CRM":   "XLK", "ORCL": "XLK",
+    # Finance
+    "JPM":  "XLF", "GS":   "XLF", "BAC":   "XLF", "MS":   "XLF",
+    "WFC":  "XLF", "BLK":  "XLF", "C":     "XLF", "USB":  "XLF",
+    # Healthcare
+    "JNJ":  "XLV", "UNH":  "XLV", "PFE":   "XLV",
+    "MRK":  "XLV", "ABBV": "XLV", "CVS":   "XLV",
+    # Consumer
+    "WMT":  "XLP", "HD":   "XLP", "NKE":   "XLP", "TGT": "XLP", "MCD": "XLP",
+    # Energy
+    "XOM":  "XLE", "CVX":  "XLE", "COP":   "XLE",
 }
 
 FACTOR_TICKERS = ["SPY", "XLK", "XLF", "XLV", "XLP", "XLE"]

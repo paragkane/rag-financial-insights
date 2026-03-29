@@ -22,18 +22,18 @@ from src.backtesting.signal_aligner import align_and_save
 from src.backtesting.engine import run_full_backtest, print_summary
 
 TICKERS = [
-    # Tech
-    "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META",
-    # Finance
-    "JPM", "GS", "BAC", "MS", "WFC", "BLK",
-    # Healthcare
-    "JNJ", "UNH", "PFE",
-    # Consumer
-    "WMT", "HD", "NKE",
-    # Energy
-    "XOM", "CVX",
+    # Tech (8)
+    "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "CRM", "ORCL",
+    # Finance (8)
+    "JPM", "GS", "BAC", "MS", "WFC", "BLK", "C", "USB",
+    # Healthcare (6)
+    "JNJ", "UNH", "PFE", "MRK", "ABBV", "CVS",
+    # Consumer (5)
+    "WMT", "HD", "NKE", "TGT", "MCD",
+    # Energy (3)
+    "XOM", "CVX", "COP",
 ]
-FILINGS_PER_TICKER = 4   # 4 quarters each = ~20 filings total
+FILINGS_PER_TICKER = 16  # 4 years of quarterly filings = ~480 filings total
 FORM_TYPE = "10-Q"
 
 DATA_PROCESSED = Path(__file__).parent.parent / "data" / "processed"

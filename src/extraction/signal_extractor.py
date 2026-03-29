@@ -113,9 +113,29 @@ def extract_from_file(filepath: Path) -> FilingSignal:
     return extract_signals(text)
 
 
+SIGNALS_CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "processed" / "_signal_cache"
+
+
+def _cache_path(ticker: str, date: str) -> Path:
+    SIGNALS_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    return SIGNALS_CACHE_DIR / f"{ticker.upper()}_{date}.json"
+
+
+def _load_cached(ticker: str, date: str) -> dict | None:
+    p = _cache_path(ticker, date)
+    if p.exists():
+        return json.loads(p.read_text())
+    return None
+
+
+def _save_cache(ticker: str, date: str, signal: dict) -> None:
+    _cache_path(ticker, date).write_text(json.dumps(signal, indent=2))
+
+
 def extract_ticker(ticker: str, section: str = "mda") -> list[dict]:
     """
     Extract signals for all processed filings of a ticker.
+    Uses a file cache — skips Claude API call if signal already extracted.
 
     Args:
         ticker:  Ticker symbol e.g. "AAPL"
@@ -137,12 +157,21 @@ def extract_ticker(ticker: str, section: str = "mda") -> list[dict]:
 
     results = []
     for f in files:
-        # Parse date from filename e.g. "2026-01-30_10Q_mda.txt"
         date_str = f.name.split("_")[0]
+
+        # Check cache first — skip Claude API call if already extracted
+        cached = _load_cached(ticker, date_str)
+        if cached:
+            results.append(cached)
+            print(f"[{ticker}] {date_str} → cached ✓  sentiment={cached['sentiment_score']:+.2f}")
+            continue
+
         print(f"[{ticker}] Extracting signals from {f.name}...")
         try:
             signal = extract_from_file(f)
-            results.append({"ticker": ticker, "date": date_str, **signal.model_dump()})
+            row = {"ticker": ticker, "date": date_str, **signal.model_dump()}
+            _save_cache(ticker, date_str, row)
+            results.append(row)
             print(f"[{ticker}] {date_str} → sentiment={signal.sentiment_score:+.2f}, "
                   f"guidance={signal.guidance_direction}, tone={signal.tone}")
         except Exception as e:

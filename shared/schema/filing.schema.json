@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rag-financial-insights.dev/schema/filing.json",
+  "title": "Filing",
+  "type": "object",
+  "required": ["cik", "accession_no", "ticker", "form", "filed_at"],
+  "properties": {
+    "cik": { "type": "string" },
+    "accession_no": { "type": "string" },
+    "ticker": { "type": "string" },
+    "form": { "type": "string", "enum": ["10-Q", "10-K", "8-K"] },
+    "filed_at": { "type": "string", "format": "date-time" },
+    "period_of_report": { "type": "string", "format": "date" },
+    "primary_document_url": { "type": "string", "format": "uri" }
+  }
+}

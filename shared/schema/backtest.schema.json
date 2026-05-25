@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rag-financial-insights.dev/schema/backtest.json",
+  "title": "BacktestResult",
+  "type": "object",
+  "required": ["signal", "horizon_days", "sharpe", "hit_rate", "t_stat", "p_value", "n"],
+  "properties": {
+    "signal": { "type": "string" },
+    "horizon_days": { "type": "integer", "enum": [1, 5, 21] },
+    "sharpe": { "type": "number" },
+    "hit_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+    "t_stat": { "type": "number" },
+    "p_value": { "type": "number", "minimum": 0, "maximum": 1 },
+    "n": { "type": "integer", "minimum": 1 },
+    "sector_neutralized": { "type": "boolean", "default": false }
+  }
+}

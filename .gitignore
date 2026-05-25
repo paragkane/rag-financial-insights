@@ -12,3 +12,10 @@ data/processed/
 charts/*.html
 .pytest_cache/
 .ruff_cache/
+
+# Node / Vite / Wrangler
+node_modules/
+dist/
+.wrangler/
+*.log
+

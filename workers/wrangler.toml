@@ -1,0 +1,8 @@
+name = "rag-financial-insights-api"
+main = "src/index.ts"
+compatibility_date = "2026-05-25"
+
+# Uncomment after `wrangler kv namespace create SIGNALS`
+# [[kv_namespaces]]
+# binding = "SIGNALS"
+# id = "<fill-me-in>"

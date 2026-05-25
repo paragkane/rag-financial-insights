@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rag-financial-insights.dev/schema/signal.json",
+  "title": "Signal",
+  "type": "object",
+  "required": ["cik", "accession_no", "ticker", "filed_at", "sentiment_score", "tone"],
+  "properties": {
+    "cik": { "type": "string" },
+    "accession_no": { "type": "string" },
+    "ticker": { "type": "string" },
+    "filed_at": { "type": "string", "format": "date-time" },
+    "sentiment_score": { "type": "number", "minimum": -1, "maximum": 1 },
+    "tone": { "type": "string", "enum": ["optimistic", "cautious", "neutral", "defensive"] },
+    "guidance_direction": { "type": "string", "enum": ["raised", "lowered", "maintained", "none"] },
+    "risk_flags": { "type": "array", "items": { "type": "string" } },
+    "earnings_framing": { "type": "string", "enum": ["beat", "miss", "in-line"] },
+    "key_themes": { "type": "array", "items": { "type": "string" }, "maxItems": 5 }
+  }
+}

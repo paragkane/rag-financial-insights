@@ -11,3 +11,6 @@ pydantic-settings
 streamlit
 pytest
 ruff
+rank-bm25
+scikit-learn
+

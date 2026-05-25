@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "rag-financial-insights-backend"
 version = "0.1.0"
@@ -8,8 +12,12 @@ dynamic = ["dependencies"]
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.txt"] }
 
+# Treat `src/` itself as the importable package — keeps imports like
+# `from src.agents.reconciler_agent import run_pipeline` working everywhere
+# once `pip install -e .` is run from this directory.
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["."]
+include = ["src", "src.*"]
 
 [tool.ruff]
 line-length = 100

@@ -6,6 +6,8 @@ __pycache__/
 .DS_Store
 data/raw/
 data/processed/
+backend/data/
+*.egg-info/
 *.parquet
 *.csv
 .ipynb_checkpoints/
